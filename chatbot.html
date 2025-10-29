@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #chat { border: 1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px; }
+        #message { width: 80%; padding: 5px; }
+        button { padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h1>Simple Chatbot</h1>
+    <div id="chat"></div>
+    <input type="text" id="message" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        function sendMessage() {
+            const message = document.getElementById('message').value;
+            if (message.trim() === '') return;
+            
+            // Display user message
+            displayMessage('You: ' + message);
+            
+            // Simple bot response (you can expand this logic)
+            const response = getBotResponse(message);
+            displayMessage('Bot: ' + response);
+            
+            // Clear input
+            document.getElementById('message').value = '';
+        }
+
+        function displayMessage(msg) {
+            const chat = document.getElementById('chat');
+            chat.innerHTML += '<p>' + msg + '</p>';
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function getBotResponse(userMessage) {
+            // Basic responses; customize as needed
+            const lowerMsg = userMessage.toLowerCase();
+            if (lowerMsg.includes('hello')) return 'Hello! How can I help?';
+            if (lowerMsg.includes('bye')) return 'Goodbye!';
+            return 'I\'m sorry, I don\'t understand that.';
+        }
+    </script>
+</body>
+</html>
